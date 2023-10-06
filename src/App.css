@@ -1,38 +1,139 @@
-.App {
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Encode Sans Expanded', sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.mainContainer {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  height: 100vh;
+  align-items: center;
+  background: lightgray;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.navContainer {
+  display: flex;
+  position: sticky;
+  height: 60px;
+  align-items: center;
+  background-color: #000;
+  font-weight: bold;
+  width: 100%
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.navItem {
+  color: #fff;
+  font-size: 24px;
+  margin-left: 10px;
+}
+
+.punchButtons {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.trackButtons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.buttonTracker {
+  height: 4rem;
+  width: 12rem;
+  background: lightcoral;
+  outline: none;
+  border: none;
+  flex-direction: column;
+  cursor: pointer;
+  display: flex;
+  border-radius: 15px;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttonPunch {
+  height: 40px;
+  width: 150px;
+  background: #a590da;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  border-radius: 15px;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.menuContainer {
+  display: flex;
+  height: 600px;
+  width: 400px;
+  margin-top: 30px;
+  padding: 8px;
+  border: 1px solid lightgrey;
+  border-radius: 10px;
+  background-color: lightgoldenrodyellow;
+  flex-direction: row;
+
+}
+
+.punchIn {
+
+  margin-bottom: 2px;
+  flex-wrap: wrap;
+  width: 250px;
+}
+
+.punchOut {
+
+  margin-bottom: 2px;
+  flex-wrap: wrap;
+  width: 250px;
+}
+
+.punchInText {
+  text-transform: uppercase;
+  font-size:14px;
+  color: green;
+
+}
+
+.punchOutText {
+  text-transform: uppercase;
+  font-size: 14px;
+  color: red;
+}
+
+.content {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  align-items: center;
+
+}
+
+.button {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-between;
+  height: 400px;
+  width: 50%;
 }
 
-.App-link {
-  color: #61dafb;
+.timer {
+  color: #fff;
+  font-size: 1.5rem;
+  padding: 1rem;
+  font-weight: bold;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.mapColumn {
+  display: inline-block;
+  flex-direction: column;
+  flex-wrap: wrap;
 }
