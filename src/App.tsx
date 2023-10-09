@@ -36,6 +36,9 @@ export default class Signup extends Component {
     addHours: any,
     addMinute: any,
     addSeconds: any,
+    downHour: any,
+    downMinute: any,
+    downSeconds: any,
   };
 
   constructor(props: any) {
@@ -58,6 +61,9 @@ export default class Signup extends Component {
       addHours:0,
       addMinute:0,
       addSeconds:0,
+      downHour: 8,
+      downMinute: 59,
+      downSeconds: 59,
     };
   }
 
@@ -71,9 +77,9 @@ export default class Signup extends Component {
     }
 
     if(chant===true){
-    if (prevState !== this.state.addSeconds) {
-      this.addTimer();
-    }
+      if (prevState !== this.state.downSeconds) {
+        this.countDownTimer();
+      }
     }
     return;
 
@@ -97,6 +103,7 @@ export default class Signup extends Component {
   onTrackerStart=()=>{
     this.state.trackerStart = `${this.state.hours} : ${this.state.minute} : ${this.state.seconds}`
     stopValue=true;
+    chant=true
   }
   
   
@@ -111,7 +118,7 @@ export default class Signup extends Component {
     this.state.arrayValueIn.push(this.state.time);
     this.state.punchInH = this.state.time;
     this.state.value = true;
-    chant = false;
+    chant = true;
     
   };
 
@@ -119,10 +126,9 @@ export default class Signup extends Component {
     this.state.time = `${this.state.hours} : ${this.state.minute} : ${this.state.seconds}`;
     this.state.arrayValueOut.push(this.state.time);
     this.state.value = true;
-    chant=true;
+    chant=false;
 
   };
-
 
   addTimer = () => {
     setTimeout(() => {
@@ -137,6 +143,21 @@ export default class Signup extends Component {
       }
     }, 1000);
   };
+
+  countDownTimer = () => {
+    setTimeout(() => {
+      if (this.state.downSeconds == 0) {
+        if (this.state.downMinute == 0) {
+          this.setState({ downHour: this.state.downHour - 1, downMinute: 59, downSeconds: 59 });
+        } else {
+          this.setState({ downMinute: this.state.downMinute - 1, downSeconds: 59 });
+        }
+      } else {
+        this.setState({ downSeconds: this.state.downSeconds - 1 });
+      }
+    }, 1000);
+  };
+
  
   render() {
     return (
@@ -160,7 +181,7 @@ export default class Signup extends Component {
                 </div>
                 <div className="buttonTracker" onClick={this.onTrackerStop}>
                   <div>Tracker stop</div>
-                  {stopValue == true ? <><CountDownTimer/></>  : ''} 
+                  {stopValue == true ? <>{this.state.downHour} : {this.state.downMinute} : {this.state.downSeconds}</>  : ''} 
                  
                 </div>
 
@@ -189,8 +210,6 @@ export default class Signup extends Component {
                   );
                 })}
               </div>
-
-              <div>{this.state.addHours}:{this.state.addMinute}:{this.state.addSeconds}</div>
 
               <div className="punchIn">
                 {this.state.arrayValueIn.map((item: any, index: any) => {
